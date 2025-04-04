@@ -1,0 +1,33 @@
+<!-- clinica/templates/form_consulta.html -->
+{% extends 'base.html' %}
+
+{% block title %}Agendar Consulta{% endblock %}
+
+{% block content %}
+<h2>Agendar Nova Consulta</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        {{ form.paciente.label }}
+        {{ form.paciente|add_class:"form-control" }}
+    </div>
+    <div class="form-group">
+        {{ form.data.label }}
+        {{ form.data|add_class:"form-control" }}
+    </div>
+    <div class="form-group">
+        {{ form.medico.label }}
+        {{ form.medico|add_class:"form-control" }}
+    </div>
+    <div class="form-group">
+        {{ form.status.label }}
+        {{ form.status|add_class:"form-control" }}
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+</form>
+
+<a href="{% url 'listar_medicos' %}" class="btn btn-secondary">Voltar</a>
+
+{% if form.errors %}
+<div class="alert alert-danger">
